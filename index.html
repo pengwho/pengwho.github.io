@@ -1,620 +1,517 @@
-<!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-tw">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="PengWho&#39;s Diary">
-<meta property="og:url" content="https://pengwho.github.io/index.html">
-<meta property="og:site_name" content="PengWho&#39;s Diary">
-<meta property="og:locale" content="zh-tw">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PengWho&#39;s Diary">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://pengwho.github.io/">
-
-
-
-
-
-  <title>PengWho's Diary</title>
-  
-
-
-
-
-
-
-
-
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pengwho 的洞洞板</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="彭千湖 Jacky Peng：把麻煩事摳成小工具的 AI 應用工程師。作品、部落格、還有一堆收納跟喇叭。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: 整頁是一面洞洞板，作品像工具一樣掛在掛鉤上，標題是標籤機打出來的膠帶。 */
+:root{
+  --board:#E4EAEE; --hole:#C3CED5; --paper:#FFFDF9; --ink:#1C2227; --muted:#5A6870;
+  --line:#D3DCE1; --tape:#1F2529; --tape-ink:#F3F5F6;
+  --stamp:#D5402C; --yolk:#F4BC3A; --yolk-ink:#3A2C06; --mint:#21806A; --mint-soft:#D5EFE7;
+  --display:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --shadow:0 1px 0 rgba(28,34,39,.06),0 10px 24px -14px rgba(28,34,39,.35);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --board:#171C20; --hole:#262E34; --paper:#20272C; --ink:#EDF1F3; --muted:#9AA8B0;
+  --line:#313A41; --tape:#0C0F11; --tape-ink:#F3F5F6;
+  --stamp:#FF6D57; --yolk:#E9B030; --yolk-ink:#2B2006; --mint:#55C7A9; --mint-soft:#1D3A33;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 12px 26px -14px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --board:#171C20; --hole:#262E34; --paper:#20272C; --ink:#EDF1F3; --muted:#9AA8B0;
+  --line:#313A41; --tape:#0C0F11; --tape-ink:#F3F5F6;
+  --stamp:#FF6D57; --yolk:#E9B030; --yolk-ink:#2B2006; --mint:#55C7A9; --mint-soft:#1D3A33;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 12px 26px -14px rgba(0,0,0,.8); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background-color:var(--board);
+  background-image:radial-gradient(circle at center,var(--hole) 0 3.5px,transparent 4.5px);
+  background-size:30px 30px;color:var(--ink);font:400 16px/1.75 var(--body);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:56px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.25}
+p{margin:0}
+:focus-visible{outline:3px solid var(--stamp);outline-offset:3px;border-radius:4px}
+
+/* 標籤機膠帶 */
+.tape{display:inline-flex;align-items:baseline;gap:.6em;background:var(--tape);color:var(--tape-ink);
+  font:400 clamp(1.05rem,2.4vw,1.35rem)/1 var(--display);letter-spacing:.14em;padding:.5em 1.1em .45em;
+  border-radius:3px;transform:rotate(-1.5deg);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 3px 0 rgba(0,0,0,.18);
+  text-shadow:0 1px 0 rgba(0,0,0,.6),0 -1px 0 rgba(255,255,255,.25)}
+.tape small{font:500 .6em var(--mono);letter-spacing:.08em;opacity:.65}
+.sec-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;margin-bottom:28px}
+.sec-head p{color:var(--muted);max-width:46ch}
+
+/* 頂部 */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--board) 88%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.logo{font:400 1.25rem var(--display);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--stamp);color:#fff;font:400 .95rem var(--display);transform:rotate(-8deg)}
+nav{display:flex;gap:2px;flex-wrap:wrap;justify-content:end}
+nav a{text-decoration:none;font-size:.92rem;padding:4px 10px;border-radius:999px;color:var(--muted)}
+nav a:hover{background:var(--paper);color:var(--ink)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:center;padding-block:56px 40px}
+.hero h1{position:relative;z-index:0;font-size:clamp(2.5rem,7vw,5rem);line-height:1.12;margin-block:24px 20px;letter-spacing:.01em}
+.scribble{position:relative;white-space:nowrap}
+.scribble::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.32em;background:var(--yolk);z-index:-1;border-radius:3px;transform:rotate(-1deg)}
+.lede{font-size:1.06rem;max-width:36em;color:var(--muted)}
+.lede strong{color:var(--ink);font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:500 .98rem var(--body);padding:10px 18px;border-radius:999px;border:2px solid var(--ink);background:var(--paper);cursor:pointer;color:var(--ink);transition:transform .15s}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{transform:translateY(-2px)}
+
+/* 掛著的名牌 */
+.hang{position:relative;padding-top:46px;justify-self:center;width:min(100%,360px)}
+.hang::before{content:"";position:absolute;left:50%;top:0;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 5px var(--hole);z-index:1}
+.hang::after{content:"";position:absolute;left:50%;top:14px;width:2px;height:40px;background:var(--ink);margin-left:-1px}
+.badge{position:relative;background:var(--paper);border-radius:16px;padding:26px 24px 24px;box-shadow:var(--shadow);transform-origin:50% -46px;animation:swing 4.5s ease-in-out infinite;border:1px solid var(--line)}
+.badge::before{content:"";position:absolute;top:12px;left:50%;width:44px;height:8px;margin-left:-22px;border-radius:999px;background:var(--board);box-shadow:inset 0 1px 2px rgba(0,0,0,.2)}
+@keyframes swing{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-2deg)}}
+.who{display:flex;align-items:center;gap:14px;margin-top:14px}
+.avatar{width:62px;height:62px;border-radius:50%;background:var(--yolk);display:grid;place-items:center;font:400 1.9rem var(--display);color:var(--yolk-ink);flex:none}
+.badge h2{font-size:1.5rem}
+.en{font:500 .78rem var(--mono);color:var(--muted);letter-spacing:.03em}
+.badge dl{margin:18px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.92rem}
+.badge dt{color:var(--muted)}
+.badge dd{margin:0}
+.live{display:inline-flex;align-items:center;gap:8px;color:var(--mint);font-weight:500}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);animation:ping 1.8s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--mint) 60%,transparent)}100%{box-shadow:0 0 0 8px transparent}}
+.stamp{position:absolute;right:-10px;bottom:-16px;border:2.5px solid var(--stamp);color:var(--stamp);font:400 .95rem/1.15 var(--display);padding:6px 10px;border-radius:8px;transform:rotate(-12deg);background:var(--paper);text-align:center}
+
+/* 便利貼戰績 */
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding-block:8px 24px}
+.note{background:var(--yolk);color:var(--yolk-ink);padding:20px 20px 18px;border-radius:2px 2px 14px 2px;box-shadow:var(--shadow);transform:rotate(var(--t,0deg))}
+.note:nth-child(1){--t:-1.6deg}.note:nth-child(2){--t:1.2deg}.note:nth-child(3){--t:-.6deg}
+.note .big{font:400 clamp(1.6rem,3.4vw,2.2rem)/1.1 var(--display);font-variant-numeric:tabular-nums}
+.note p{font-size:.92rem;margin-top:8px;line-height:1.6}
+
+/* 作品：掛在洞洞板上 */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 .88rem var(--body);padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 26px;padding-top:18px}
+.tool{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px 22px 22px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:12px;transform:rotate(var(--tilt,0deg));transform-origin:50% -18px;transition:transform .4s cubic-bezier(.3,1.6,.5,1);min-width:0}
+.tool::before{content:"";position:absolute;top:-18px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 5px var(--hole)}
+.tool::after{content:"";position:absolute;top:9px;left:50%;width:24px;height:7px;margin-left:-12px;border-radius:999px;background:var(--board);box-shadow:inset 0 1px 2px rgba(0,0,0,.2)}
+.tool:hover{transform:rotate(calc(var(--tilt,0deg) * -1.8)) translateY(-3px)}
+.tool:nth-child(3n+1){--tilt:-1deg}.tool:nth-child(3n+2){--tilt:.8deg}.tool:nth-child(3n){--tilt:-.4deg}
+.tool.feature{grid-column:span 2}
+.tool h3{font-size:1.45rem}
+.tool h3 span{display:block;font:500 .74rem var(--mono);color:var(--muted);letter-spacing:.03em;margin-top:2px}
+.tool .one{font-weight:500}
+.tool .desc{color:var(--muted);font-size:.95rem}
+.tool .desc strong{color:var(--ink);font-weight:500}
+.state{align-self:flex-start;font:500 .78rem var(--body);padding:3px 10px;border-radius:999px;letter-spacing:.04em}
+.state.on{background:var(--mint-soft);color:var(--mint)}
+.state.used{background:color-mix(in srgb,var(--yolk) 35%,var(--paper));color:var(--ink)}
+.state.fix{background:var(--board);color:var(--muted);border:1px dashed var(--muted)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.stack li{font:500 .74rem var(--mono);padding:2px 8px;border-radius:5px;background:var(--board);color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:16px;margin-top:auto;padding-top:6px}
+.links a{font-weight:500;font-size:.92rem;text-decoration:none;border-bottom:2px solid var(--stamp);padding-bottom:1px}
+.links a:hover{color:var(--stamp)}
+.flow{font:500 .76rem/1.9 var(--mono);color:var(--muted);overflow-x:auto;white-space:nowrap;padding:8px 10px;background:var(--board);border-radius:8px}
+.flow b{color:var(--ink);font-weight:700}
+.empty{color:var(--muted);grid-column:1/-1;text-align:center;padding:30px}
+
+/* 經歷：工具箱 */
+.drawer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:28px;align-items:start}
+.now{background:var(--ink);color:var(--paper);border-radius:18px;padding:26px;box-shadow:var(--shadow)}
+.now h3{font-size:1.6rem;margin:10px 0 12px}
+.now p{opacity:.85;font-size:.96rem}
+.now .tag{font:500 .76rem var(--mono);letter-spacing:.1em;color:var(--yolk)}
+.now ul{margin:16px 0 0;padding-left:1.1em;font-size:.94rem;opacity:.9}
+.bins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.bin{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px 16px;border-top:8px solid var(--c,var(--line))}
+.bin .k{font:500 .72rem var(--mono);letter-spacing:.12em;color:var(--muted)}
+.bin h4{font-size:1.16rem;margin:4px 0 6px}
+.bin p{font-size:.92rem;color:var(--muted)}
+.bin:nth-child(1){--c:var(--mint)}.bin:nth-child(2){--c:var(--yolk)}.bin:nth-child(3){--c:var(--stamp)}.bin:nth-child(4){--c:var(--ink)}.bin:nth-child(5){--c:var(--mint)}.bin:nth-child(6){--c:var(--yolk)}
+
+/* 部落格：收納盒 */
+.boxes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:6px 6px 14px 14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
+.box .lid{height:14px;background:var(--c)}
+.box .face{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.box .label{align-self:flex-start;background:var(--tape);color:var(--tape-ink);font:400 .95rem var(--display);letter-spacing:.1em;padding:4px 10px;border-radius:2px;transform:rotate(-1deg)}
+.box p{font-size:.9rem;color:var(--muted)}
+.box ul{margin:auto 0 0;padding:10px 0 0;list-style:none;border-top:1px dashed var(--line);font-size:.86rem;display:grid;gap:4px}
+.box li::before{content:"草稿｜";color:var(--stamp);font-size:.8em}
+.posts{margin-top:34px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:6px 22px;box-shadow:var(--shadow)}
+.posts h3{font-size:1.1rem;padding:14px 0 4px;color:var(--muted)}
+.post{display:grid;grid-template-columns:7.5em minmax(0,1fr) auto;gap:4px 18px;align-items:baseline;padding:14px 0;border-top:1px dashed var(--line)}
+.post time{font:500 .82rem var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.post button{all:unset;cursor:pointer;font:400 1.15rem var(--display);color:var(--ink)}
+.post button:hover{color:var(--stamp)}
+.post button:focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
+.post .sum{grid-column:2/3;font-size:.9rem;color:var(--muted)}
+.post .col{font-size:.78rem;padding:2px 9px;border-radius:999px;background:var(--board);color:var(--muted);white-space:nowrap}
+
+/* 文章閱讀器 */
+.reader{position:fixed;inset:0;z-index:30;background:color-mix(in srgb,var(--tape) 55%,transparent);display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.paper{background:var(--paper);max-width:720px;width:100%;border-radius:14px;padding:56px clamp(20px,5vw,48px) 44px;box-shadow:var(--shadow);position:relative}
+.paper .close{position:absolute;top:14px;right:14px;padding:6px 14px;font-size:.88rem}
+.prose{font-size:1.02rem;line-height:1.9;max-width:65ch}
+.prose h1{font-size:clamp(1.6rem,4vw,2.1rem);margin:0 0 6px}
+.prose h2{font-size:1.35rem;margin:30px 0 8px}
+.prose p,.prose ul,.prose ol{margin:0 0 14px}
+.prose code{font:500 .88em var(--mono);background:var(--board);padding:1px 5px;border-radius:4px}
+.prose pre{background:var(--board);padding:14px;border-radius:10px;overflow-x:auto}
+.prose pre code{background:none;padding:0}
+.prose a{color:var(--stamp)}
+.prose .meta{font:500 .82rem var(--mono);color:var(--muted);margin-bottom:22px}
+
+/* 聯絡 */
+.contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,40px);box-shadow:var(--shadow)}
+.contact h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:22px 0 12px}
+.contact p{color:var(--muted)}
+.ways{display:grid;gap:10px}
+.way{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-radius:12px;background:var(--board);text-decoration:none;min-width:0}
+.way > div{min-width:0}
+.way span{font:500 .74rem var(--mono);color:var(--muted);letter-spacing:.08em}
+.way strong{font-weight:500;overflow-wrap:anywhere}
+#mail{user-select:all}
+.way button{font:500 .82rem var(--body);border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer;flex:none}
+a.way:hover strong{color:var(--stamp)}
+footer{padding-block:34px 48px;text-align:center;color:var(--muted);font-size:.86rem}
+footer code{font-family:var(--mono)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .board{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .boxes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .drawer,.contact{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  section{padding-block:40px}
+  .hero{padding-block:36px 28px}
+  nav a:nth-child(3){display:none}
+  .notes,.board,.boxes,.bins{grid-template-columns:1fr}
+  .tool.feature{grid-column:auto}
+  .post{grid-template-columns:1fr}
+  .post .sum{grid-column:auto}
+  .post .col{justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
 </head>
+<body>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">PengWho's Diary</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>摳</b>pengwho</a>
+    <nav aria-label="主選單">
+      <a href="#works">作品</a>
+      <a href="#blog">部落格</a>
+      <a href="#about">經歷</a>
+      <a href="#hello">找我</a>
+    </nav>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首頁
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            歸檔
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pengwho.github.io/2019/09/07/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pengwho?">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PengWho's Diary">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/07/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-09-07T00:32:54+08:00">
-                2019-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <span class="tape">嗨，我是千湖 <small>PENGWHO.COM</small></span>
+        <h1>我把麻煩事，<br>摳成<span class="scribble">小工具</span>。</h1>
+        <p class="lede">電子發票太散？寫一個<strong>摳摳</strong>把它們摳回來。收納盒不知道塞不塞得下？做一個<strong>塞唄</strong>先塞塞看。會議紀錄要寫三小時？丟給 AI，十五分鐘收工。<br>資工碩士，做過 ERP、跑過非洲、顧過離岸風電公司的機房，現在專心做 <strong>AI 應用</strong>。</p>
+        <div class="cta">
+          <a class="btn primary" href="#works">看看我做了什麼</a>
+          <a class="btn" href="#hello">我在找工作，來聊聊</a>
         </div>
-      </header>
-    
+      </div>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
+      <div class="hang">
+        <div class="badge">
+          <div class="who">
+            <div class="avatar" aria-hidden="true">彭</div>
+            <div>
+              <h2>彭千湖</h2>
+              <div class="en">Jacky Peng · Chien-Hu Peng</div>
+            </div>
+          </div>
+          <dl>
+            <dt>職業</dt><dd>AI 應用工程師</dd>
+            <dt>專長</dt><dd>把亂七八糟的流程系統化</dd>
+            <dt>會講</dt><dd>Python、中文、English</dd>
+            <dt>狀態</dt><dd><span class="live">開放面試中</span></dd>
+          </dl>
+          <div class="stamp">歡迎<br>來信</div>
+        </div>
+      </div>
     </div>
-    
-    
-    
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    <div class="notes" aria-label="戰績">
+      <div class="note"><div class="big">3 小時 → 15 分</div><p>用 Teams 語音轉文字、NotebookLM 和自訂 prompt 寫會議紀錄，實際跑過 20 多場會議。</p></div>
+      <div class="note"><div class="big">170 台設備</div><p>五個網段的公司內網，用被動監聽加 ARP 掃描自動畫出拓樸圖，不用一台一台填表。</p></div>
+      <div class="note"><div class="big">30 秒</div><p>財政部 App 的登入只活 30 秒。摳摳遇到 401 會自己重登，抓半年發票也不會斷。</p></div>
+    </div>
   </div>
-  
-  
-  
-  </article>
 
+  <section id="works">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tape">作品掛板 <small>WORKS</small></span>
+        <div class="filters" role="group" aria-label="篩選作品">
+          <button class="chip" id="f-all" type="button" aria-pressed="true" data-f="all">全部</button>
+          <button class="chip" id="f-on" type="button" aria-pressed="false" data-f="on">上線中</button>
+          <button class="chip" id="f-used" type="button" aria-pressed="false" data-f="used">公司實戰過</button>
+          <button class="chip" id="f-fix" type="button" aria-pressed="false" data-f="fix">整修中</button>
+        </div>
+      </div>
 
-    
+      <div class="board" id="board">
+        <article class="tool feature" data-s="on">
+          <span class="state on">上線中・有線上展示</span>
+          <h3>摳摳 KouKou<span>github.com/pengwho/koukou</span></h3>
+          <p class="one">把散在銀行和發票載具裡的摳摳，一筆一筆摳回來。</p>
+          <p class="desc">模擬財政部 App 的協定，把手機條碼的電子發票連品項一起抓回自己電腦上的 SQLite 帳本。登入資料用 AES-256-GCM 包起來、查詢用 HS256 JWT 簽章；被 Cloudflare 擋就換成模仿 Chrome 的 TLS 指紋。下一步是讓 AI 助理<strong>阿財</strong>幫你分類、用白話查帳，再做成 MCP server 讓 Claude 直接讀帳本。</p>
+          <div class="flow">網頁按鈕 → 逐月同步 → 401 自動重登 → <b>AES 信封＋JWT</b> → 財政部 API → <b>SQLite 帳本</b> → 本機網頁</div>
+          <ul class="stack"><li>Python</li><li>FastAPI</li><li>SQLite</li><li>curl_cffi</li><li>Playwright</li><li>GitHub Actions</li></ul>
+          <div class="links"><a href="https://pengwho.com/koukou/">線上試玩</a><a href="https://github.com/pengwho/koukou">看程式碼</a></div>
+        </article>
+
+        <article class="tool" data-s="on">
+          <span class="state on">上線中</span>
+          <h3>塞唄 Sideby<span>github.com/pengwho/sideby</span></h3>
+          <p class="one">先塞塞看，再下單。</p>
+          <p class="desc">收納盒放進 IKEA BILLY、KALLAX，每層怎麼擺、能不能疊、要買幾個，用 3D 模擬給你看，附上我自己買來實測的照片。上寬下窄、蓋子卡進下層的深度都有算。</p>
+          <ul class="stack"><li>Three.js</li><li>JSON 型錄</li><li>GitHub Pages</li></ul>
+          <div class="links"><a href="https://pengwho.com/sideby/">去塞塞看</a><a href="https://github.com/pengwho/sideby">程式碼</a></div>
+        </article>
+
+        <article class="tool" data-s="used">
+          <span class="state used">公司實戰過</span>
+          <h3>AI 會議紀錄流程</h3>
+          <p class="one">三小時的苦工，變成一杯咖啡的時間。</p>
+          <p class="desc">麥克風錄音 → Teams 轉文字 → NotebookLM 整理 → Word 定稿。prompt 針對多人發言辨識和離岸風電術語調過，跑了 20 多場會議，每場 4 到 15 分鐘完成。</p>
+          <ul class="stack"><li>Teams STT</li><li>NotebookLM</li><li>Prompt 工程</li></ul>
+        </article>
+
+        <article class="tool" data-s="used">
+          <span class="state used">公司實戰過</span>
+          <h3>打卡小幫手 LINE Bot</h3>
+          <p class="one">誰還沒打卡，機器人會用很欠揍的語氣提醒。</p>
+          <div class="flow">Windows 上傳腳本 → <b>Cloudflare R2</b> → Worker → Docker Bot → <b>LINE 群組</b></div>
+          <p class="desc">打卡紀錄近即時同步上雲，依時段換不同的搞笑提醒文案。</p>
+          <ul class="stack"><li>Python</li><li>Docker</li><li>Cloudflare</li><li>LINE API</li></ul>
+        </article>
+
+        <article class="tool" data-s="fix">
+          <span class="state fix">整修中</span>
+          <h3>零設定內網拓樸工具</h3>
+          <p class="one">接上網路，它就自己畫出公司網路長怎樣。</p>
+          <p class="desc">被動聽 mDNS、SSDP、NBNS，ARP 加 ping 掃描，非同步埠指紋加 OUI 廠商比對，再用分層評分推算誰接誰。前端用 D3.js，可切樹狀和力導向。</p>
+          <ul class="stack"><li>Scapy</li><li>asyncio</li><li>D3.js v7</li></ul>
+        </article>
+
+        <article class="tool" data-s="on">
+          <span class="state on">上線中</span>
+          <h3>dotfiles<span>github.com/pengwho/dotfiles</span></h3>
+          <p class="one">一行指令，新電腦秒變我的電腦。</p>
+          <p class="desc">Starship、tmux、zsh 外掛，macOS 和 Linux 通用，用 symlink 安裝，不需要 Oh My Zsh。</p>
+          <ul class="stack"><li>zsh</li><li>tmux</li><li>Starship</li></ul>
+          <div class="links"><a href="https://github.com/pengwho/dotfiles">程式碼</a></div>
+        </article>
+
+        <article class="tool" data-s="fix">
+          <span class="state fix">整修中</span>
+          <h3>360° 環景看板</h3>
+          <p class="one">不想付月費，就自己架一個環景導覽。</p>
+          <p class="desc">用 Three.js 自架 360° 環景檢視器放上 GitHub Pages，順便把 Koala360、Panoee、Pannellum 都比較了一輪。</p>
+          <ul class="stack"><li>Three.js</li><li>GitHub Pages</li></ul>
+        </article>
+
+        <article class="tool" data-s="fix">
+          <span class="state fix">整修中</span>
+          <h3>FileSorter</h3>
+          <p class="one">幾萬張照片和影片，自動依時間歸檔。</p>
+          <p class="desc">FastAPI 加瀏覽器前端的本機小 App，正在 PyWebView、Tauri、Flutter 之間挑一個，打包成 Mac 版。</p>
+          <ul class="stack"><li>FastAPI</li><li>PyWebView</li></ul>
+        </article>
+        <p class="empty" id="empty" hidden>這一格目前空空的。</p>
+      </div>
+    </div>
   </section>
 
-  
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">pengwho?</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">文章</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
+  <section id="blog">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tape">部落格收納櫃 <small>BLOG</small></span>
+        <p>工作以外的東西也很多。每個盒子是一個專欄，標著「草稿」的是準備要寫的題目。</p>
       </div>
-    </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">pengwho?</span>
+      <div class="boxes">
+        <div class="box" style="--c:var(--stamp)"><div class="lid"></div><div class="face">
+          <span class="label">工具人日記</span>
+          <p>做專案時踩的坑、拆解的協定、半夜除的蟲。</p>
+          <ul><li>我怎麼讓程式假裝自己是財政部 App</li><li>Scapy 在 Windows 上的三個怪脾氣</li></ul>
+        </div></div>
+        <div class="box" style="--c:var(--mint)"><div class="lid"></div><div class="face">
+          <span class="label">AI 試吃室</span>
+          <p>新出的 AI 工具先替你吃一口，好不好吃直接講。</p>
+          <ul><li>Claude Code、OpenCode、Hermes Agent 比一比</li><li>iPAS AI 應用規劃師準備筆記</li></ul>
+        </div></div>
+        <div class="box" style="--c:var(--yolk)"><div class="lid"></div><div class="face">
+          <span class="label">收納控</span>
+          <p>塞唄的幕後：量尺寸、買盒子、拍照、退貨。</p>
+          <ul><li>BILLY 一層到底塞得下幾個盒子</li><li>上寬下窄的盒子為什麼最難算</li></ul>
+        </div></div>
+        <div class="box" style="--c:var(--ink)"><div class="lid"></div><div class="face">
+          <span class="label">房間改造中</span>
+          <p>一間近正方形的房間，怎麼塞下升降桌、洞洞板和公仔。</p>
+          <ul><li>角鋼架噴漆翻新紀錄</li><li>洞洞板牆，就是這個網站的原型</li></ul>
+        </div></div>
+        <div class="box" style="--c:var(--mint)"><div class="lid"></div><div class="face">
+          <span class="label">客廳劇院</span>
+          <p>老前級、後級和 7.1 聲道的折騰日常。</p>
+          <ul><li>Integra DHC-80.6 配 Apple TV 的設定</li><li>外接後級推 7.1 的接線筆記</li></ul>
+        </div></div>
+        <div class="box" style="--c:var(--stamp)"><div class="lid"></div><div class="face">
+          <span class="label">走出台灣</span>
+          <p>香港、非洲、東南亞，出差和亂跑學到的事。</p>
+          <ul><li>一趟自費的非洲供應鏈田野調查</li><li>在曼谷生活跟工作的準備清單</li></ul>
+        </div></div>
+        <div class="box" style="--c:var(--yolk)"><div class="lid"></div><div class="face">
+          <span class="label">摳摳理財</span>
+          <p>用工程師的方式記帳、看台股公告。</p>
+          <ul><li>一年的電子發票告訴我錢去哪了</li><li>做一個股票公告監控 Agent</li></ul>
+        </div></div>
+        <div class="box" style="--c:var(--ink)"><div class="lid"></div><div class="face">
+          <span class="label">轉職筆記</span>
+          <p>從 IT 工程師轉 AI 應用工程師的路線圖和面試紀錄。</p>
+          <ul><li>我的 AI Agent 四階段自學路線</li><li>寫給 IT 人的作品集怎麼做</li></ul>
+        </div></div>
+      </div>
 
-  
+      <div class="posts">
+        <h3>最新文章</h3>
+        <div id="posts"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tape">我的工具箱 <small>ABOUT</small></span>
+        <p>履歷路線不太直，但每一格都裝了用得上的東西。</p>
+      </div>
+      <div class="drawer">
+        <div class="now">
+          <span class="tag">NOW · 2026</span>
+          <h3>找一份 AI 應用工程師的工作</h3>
+          <p>想做 AI workflow 與數位轉型：把 LLM 接進真實又混亂的業務流程，讓它真的有人用。對東南亞和跨國團隊特別有興趣。</p>
+          <ul>
+            <li>Python、Docker、Linux、系統整合</li>
+            <li>LLM 應用、prompt 工程、MCP、Agent 工具</li>
+            <li>ERP、HR 系統導入、IT 基礎建設與資安</li>
+          </ul>
+        </div>
+        <div class="bins">
+          <div class="bin"><div class="k">ACADEMIA</div><h4>中原大學 資工碩士</h4><p>研究聯邦學習，論文發表在 Future Generation Computer Systems。</p></div>
+          <div class="bin"><div class="k">ENTERPRISE</div><h4>緯創 Wistron</h4><p>在大公司裡學會 ERP 怎麼跑，也看懂流程卡在哪。</p></div>
+          <div class="bin"><div class="k">STARTUP</div><h4>YuBo Technology</h4><p>新創什麼都要自己來，雲端顧問和系統建置都碰過。</p></div>
+          <div class="bin"><div class="k">HONG KONG</div><h4>手機業務 × ERP 導入</h4><p>一邊賣手機一邊把 ERP 裝進去，業務和系統兩邊都懂。</p></div>
+          <div class="bin"><div class="k">FIELD WORK</div><h4>非洲與亞洲供應鏈研究</h4><p>自己規劃的多國田野調查，看貨怎麼從工廠走到市場。</p></div>
+          <div class="bin"><div class="k">2025.10 – 2026.06</div><h4>世紀樺欣 管理部 IT</h4><p>離岸風電鋼構集團。顧機房、資安、HR 系統，順手做了上面那些 AI 小工具。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hello">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <span class="tape">來信請投這裡 <small>CONTACT</small></span>
+          <h2>有職缺、有合作，<br>或只是想聊收納盒？</h2>
+          <p>都歡迎。中文、英文都可以，通常一兩天內回覆。</p>
+        </div>
+        <div class="ways">
+          <div class="way"><div><span>EMAIL</span><br><strong id="mail">1a2b3c938@gmail.com</strong></div><button type="button" id="copy">複製</button></div>
+          <a class="way" href="https://www.linkedin.com/in/pengwho"><div><span>LINKEDIN</span><br><strong>linkedin.com/in/pengwho</strong></div><span aria-hidden="true">↗</span></a>
+          <a class="way" href="https://github.com/pengwho"><div><span>GITHUB</span><br><strong>github.com/pengwho</strong></div><span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">手工 HTML 一頁搞定，沒有 Hexo，角落也沒有跳舞的看板娘了。© 2026 彭千湖 · <code>pengwho.com</code></div>
+</footer>
+
+<div class="reader" id="reader" hidden>
+  <article class="paper" role="dialog" aria-modal="true" aria-label="文章">
+    <button class="btn close" id="r-close" type="button">關閉</button>
+    <div class="prose" id="r-body"><p>載入中…</p></div>
+  </article>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+// 作品篩選
+const chips=[...document.querySelectorAll('.chip')];
+const tools=[...document.querySelectorAll('.tool')];
+chips.forEach(c=>c.addEventListener('click',()=>{
+  chips.forEach(x=>x.setAttribute('aria-pressed',String(x===c)));
+  const f=c.dataset.f;let n=0;
+  tools.forEach(t=>{const show=f==='all'||t.dataset.s===f;t.hidden=!show;if(show)n++;});
+  document.getElementById('empty').hidden=n>0;
+}));
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+// 複製 email
+document.getElementById('copy').addEventListener('click',e=>{
+  const el=document.getElementById('mail'),b=e.currentTarget;
+  const flash=t=>{b.textContent=t;setTimeout(()=>b.textContent='複製',1600)};
+  const select=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);flash('已選取')};
+  try{navigator.clipboard.writeText(el.textContent).then(()=>flash('已複製'),select)}catch(_){select()}
+});
 
+// 文章：posts/index.json 是清單，posts/<slug>.md 是內文
+const FALLBACK=[{slug:'hello-again',title:'洞洞板開張：七年後重新整理這個網站',date:'2026-10-14',column:'工具人日記',summary:'2019 年用 Hexo 開了部落格，只寫了一篇 Hello World。這次把它拆掉重做。'}];
+const postsEl=document.getElementById('posts');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function renderList(list){
+  postsEl.innerHTML=list.map(p=>`<div class="post"><time datetime="${esc(p.date)}">${esc(p.date)}</time><button type="button" data-slug="${esc(p.slug)}">${esc(p.title)}</button><span class="col">${esc(p.column)}</span><p class="sum">${esc(p.summary)}</p></div>`).join('');
+}
+renderList(FALLBACK);
+fetch('posts/index.json').then(r=>r.ok?r.json():Promise.reject()).then(l=>{if(Array.isArray(l)&&l.length)renderList(l)}).catch(()=>{});
 
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+const reader=document.getElementById('reader'),rBody=document.getElementById('r-body');
+let lastFocus=null;
+async function openPost(slug){
+  lastFocus=document.activeElement;reader.hidden=false;document.body.style.overflow='hidden';
+  rBody.innerHTML='<p>載入中…</p>';document.getElementById('r-close').focus();
+  try{const r=await fetch(`posts/${encodeURIComponent(slug)}.md`);if(!r.ok)throw 0;const md=await r.text();
+    rBody.innerHTML=window.marked?marked.parse(md):`<pre>${esc(md)}</pre>`;
+  }catch(_){rBody.innerHTML='<h1>這篇還在箱子裡</h1><p>文章檔案沒有讀到。如果是在本機直接雙擊打開 index.html，瀏覽器不讓網頁讀檔；放上 GitHub Pages 就會正常。</p>'}
+}
+function closePost(){reader.hidden=true;document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
+postsEl.addEventListener('click',e=>{const b=e.target.closest('button[data-slug]');if(b)openPost(b.dataset.slug)});
+document.getElementById('r-close').addEventListener('click',closePost);
+reader.addEventListener('click',e=>{if(e.target===reader)closePost()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!reader.hidden)closePost()});
 </script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/poi.model.json"},"display":{"position":"left","width":300,"height":400,"hOffset":30,"vOffset":-63},"mobile":{"show":false,"scale":0.3},"log":false});</script></body>
+</body>
 </html>
