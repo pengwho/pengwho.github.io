@@ -155,7 +155,13 @@ nav a:hover{background:var(--paper);color:var(--ink)}
 .box .label{align-self:flex-start;background:var(--tape);color:var(--tape-ink);font:400 .95rem var(--display);letter-spacing:.1em;padding:4px 10px;border-radius:2px;transform:rotate(-1deg)}
 .box p{font-size:.9rem;color:var(--muted)}
 .box ul{margin:auto 0 0;padding:10px 0 0;list-style:none;border-top:1px dashed var(--line);font-size:.86rem;display:grid;gap:4px}
-.box li::before{content:"草稿｜";color:var(--stamp);font-size:.8em}
+.box li.draft{color:var(--muted)}
+.box li.draft::before{content:"草稿｜";color:var(--stamp);font-size:.8em}
+.box li button{all:unset;cursor:pointer;color:var(--ink);text-decoration:underline;text-decoration-color:var(--stamp);text-decoration-thickness:2px;text-underline-offset:3px}
+.box li button:hover{color:var(--stamp)}
+.box li button:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+.box li.empty-col{color:var(--muted)}
+.more{display:flex;justify-content:center;padding:6px 0 14px}
 .posts{margin-top:34px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:6px 22px;box-shadow:var(--shadow)}
 .posts h3{font-size:1.1rem;padding:14px 0 4px;color:var(--muted)}
 .post{display:grid;grid-template-columns:7.5em minmax(0,1fr) auto;gap:4px 18px;align-items:baseline;padding:14px 0;border-top:1px dashed var(--line)}
@@ -179,6 +185,12 @@ nav a:hover{background:var(--paper);color:var(--ink)}
 .prose pre{background:var(--board);padding:14px;border-radius:10px;overflow-x:auto}
 .prose pre code{background:none;padding:0}
 .prose a{color:var(--stamp)}
+.prose table{display:block;overflow-x:auto;border-collapse:collapse;margin:0 0 16px;font-size:.92rem}
+.prose th,.prose td{border:1px solid var(--line);padding:6px 12px;text-align:left;vertical-align:top}
+.prose th{background:var(--board);font-weight:500}
+.prose blockquote{margin:0 0 16px;padding:10px 16px;border-left:4px solid var(--yolk);background:var(--board);border-radius:0 8px 8px 0;color:var(--muted);font-size:.94rem}
+.prose blockquote p{margin:0}
+.prose img{max-width:100%;border-radius:10px}
 .prose .meta{font:500 .82rem var(--mono);color:var(--muted);margin-bottom:22px}
 
 /* 聯絡 */
@@ -295,7 +307,7 @@ footer code{font-family:var(--mono)}
           <span class="state on">上線中</span>
           <h3>塞唄 Sideby<span>github.com/pengwho/sideby</span></h3>
           <p class="one">先塞塞看，再下單。</p>
-          <p class="desc">收納盒放進 IKEA BILLY、KALLAX，每層怎麼擺、能不能疊、要買幾個，用 3D 模擬給你看，附上我自己買來實測的照片。上寬下窄、蓋子卡進下層的深度都有算。</p>
+          <p class="desc">收納盒放進 IKEA BILLY、KALLAX，每層怎麼擺、能不能疊、要買幾個，用 3D 模擬給你看，之後還會附上我自己買來實測的照片。上寬下窄、蓋子卡進下層的深度都有算。</p>
           <ul class="stack"><li>Three.js</li><li>JSON 型錄</li><li>GitHub Pages</li></ul>
           <div class="links"><a href="https://pengwho.com/sideby/">去塞塞看</a><a href="https://github.com/pengwho/sideby">程式碼</a></div>
         </article>
@@ -328,48 +340,49 @@ footer code{font-family:var(--mono)}
         <div class="box" style="--c:var(--stamp)"><div class="lid"></div><div class="face">
           <span class="label">工具人日記</span>
           <p>做專案時踩的坑、拆解的協定、半夜除的蟲。</p>
-          <ul><li>我怎麼讓程式假裝自己是財政部 App</li><li>被 Cloudflare 擋下來之後，我怎麼過關</li></ul>
+          <ul class="col-list" data-col="工具人日記"></ul>
         </div></div>
         <div class="box" style="--c:var(--mint)"><div class="lid"></div><div class="face">
           <span class="label">AI 試吃室</span>
           <p>新出的 AI 工具先替你吃一口，好不好吃直接講。</p>
-          <ul><li>Claude Code、OpenCode、Hermes Agent 比一比</li><li>iPAS AI 應用規劃師準備筆記</li></ul>
+          <ul class="col-list" data-col="AI 試吃室"></ul>
         </div></div>
         <div class="box" style="--c:var(--yolk)"><div class="lid"></div><div class="face">
           <span class="label">收納控</span>
           <p>塞唄的幕後：量尺寸、買盒子、拍照、退貨。</p>
-          <ul><li>BILLY 一層到底塞得下幾個盒子</li><li>上寬下窄的盒子為什麼最難算</li></ul>
+          <ul class="col-list" data-col="收納控"></ul>
         </div></div>
         <div class="box" style="--c:var(--ink)"><div class="lid"></div><div class="face">
           <span class="label">房間改造中</span>
           <p>一間近正方形的房間，怎麼塞下升降桌、洞洞板和公仔。</p>
-          <ul><li>角鋼架噴漆翻新紀錄</li><li>洞洞板牆，就是這個網站的原型</li></ul>
+          <ul class="col-list" data-col="房間改造中"></ul>
         </div></div>
         <div class="box" style="--c:var(--mint)"><div class="lid"></div><div class="face">
           <span class="label">客廳劇院</span>
           <p>老前級、後級和 7.1 聲道的折騰日常。</p>
-          <ul><li>Integra DHC-80.6 配 Apple TV 的設定</li><li>外接後級推 7.1 的接線筆記</li></ul>
+          <ul class="col-list" data-col="客廳劇院"></ul>
         </div></div>
         <div class="box" style="--c:var(--stamp)"><div class="lid"></div><div class="face">
           <span class="label">走出台灣</span>
           <p>香港、非洲、東南亞，出差和亂跑學到的事。</p>
-          <ul><li>一趟自費的非洲供應鏈田野調查</li><li>在曼谷生活跟工作的準備清單</li></ul>
+          <ul class="col-list" data-col="走出台灣"></ul>
         </div></div>
         <div class="box" style="--c:var(--yolk)"><div class="lid"></div><div class="face">
           <span class="label">摳摳理財</span>
           <p>用工程師的方式記帳、看台股公告。</p>
-          <ul><li>一年的電子發票告訴我錢去哪了</li><li>做一個股票公告監控 Agent</li></ul>
+          <ul class="col-list" data-col="摳摳理財"></ul>
         </div></div>
         <div class="box" style="--c:var(--ink)"><div class="lid"></div><div class="face">
           <span class="label">轉職筆記</span>
           <p>從 IT 工程師轉 AI 應用工程師的路線圖和面試紀錄。</p>
-          <ul><li>我的 AI Agent 四階段自學路線</li><li>寫給 IT 人的作品集怎麼做</li></ul>
+          <ul class="col-list" data-col="轉職筆記"></ul>
         </div></div>
       </div>
 
       <div class="posts">
         <h3>最新文章</h3>
         <div id="posts"></div>
+        <div class="more"><button class="chip" id="more" type="button" hidden>看全部文章</button></div>
       </div>
     </div>
   </section>
@@ -451,30 +464,68 @@ document.getElementById('copy').addEventListener('click',e=>{
   try{navigator.clipboard.writeText(el.textContent).then(()=>flash('已複製'),select)}catch(_){select()}
 });
 
-// 文章：posts/index.json 是清單，posts/<slug>.md 是內文
-const FALLBACK=[{slug:'hello-again',title:'洞洞板開張：七年後重新整理這個網站',date:'2026-10-14',column:'工具人日記',summary:'2019 年用 Hexo 開了部落格，只寫了一篇 Hello World。這次把它拆掉重做。'}];
-const postsEl=document.getElementById('posts');
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function renderList(list){
-  postsEl.innerHTML=list.map(p=>`<div class="post"><time datetime="${esc(p.date)}">${esc(p.date)}</time><button type="button" data-slug="${esc(p.slug)}">${esc(p.title)}</button><span class="col">${esc(p.column)}</span><p class="sum">${esc(p.summary)}</p></div>`).join('');
+// 文章：posts/ 資料夾裡的每個 .md 就是一篇，最上面用 --- 包住的區塊寫標題、日期、專欄
+// 清單優先從 GitHub API 讀資料夾內容；讀不到時改讀 posts/index.json
+const REPO='pengwho/pengwho.github.io';
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const postsEl=document.getElementById('posts'),moreBtn=document.getElementById('more');
+const POSTS={};let published=[],showAll=false;
+
+function parse(slug,text){
+  const m=text.match(/^﻿?---\r?\n([\s\S]*?)\r?\n---\r?\n?/);const meta={};
+  if(m)m[1].split(/\r?\n/).forEach(l=>{const i=l.indexOf(':');if(i>0)meta[l.slice(0,i).trim()]=l.slice(i+1).trim().replace(/^["']|["']$/g,'')});
+  return{slug,title:meta.title||slug,date:meta.date||'',column:meta.column||'',summary:meta.summary||'',
+    draft:/^(true|yes|1)$/i.test(meta.draft||''),body:m?text.slice(m[0].length):text};
 }
-renderList(FALLBACK);
-fetch('posts/index.json').then(r=>r.ok?r.json():Promise.reject()).then(l=>{if(Array.isArray(l)&&l.length)renderList(l)}).catch(()=>{});
+async function listFiles(){
+  try{const r=await fetch(`https://api.github.com/repos/${REPO}/contents/posts`);if(!r.ok)throw 0;
+    const l=await r.json();return l.filter(f=>f.type==='file'&&f.name.endsWith('.md')).map(f=>f.name);}
+  catch(_){const r=await fetch('posts/index.json');return r.ok?r.json():[];}
+}
+function renderList(){
+  const list=showAll?published:published.slice(0,6);
+  postsEl.innerHTML=list.length?list.map(p=>`<div class="post"><time datetime="${esc(p.date)}">${esc(p.date)}</time><button type="button" data-slug="${esc(p.slug)}">${esc(p.title)}</button><span class="col">${esc(p.column)}</span><p class="sum">${esc(p.summary)}</p></div>`).join(''):'<p class="sum" style="padding:14px 0">文章還在箱子裡。</p>';
+  moreBtn.hidden=published.length<=6;moreBtn.textContent=showAll?'收起來':`看全部 ${published.length} 篇文章`;
+}
+function renderBoxes(all){
+  document.querySelectorAll('.col-list').forEach(ul=>{
+    const items=all.filter(p=>p.column===ul.dataset.col);
+    ul.innerHTML=items.length?items.map(p=>p.draft?`<li class="draft">${esc(p.title)}</li>`:`<li><button type="button" data-slug="${esc(p.slug)}">${esc(p.title)}</button></li>`).join(''):'<li class="empty-col">還沒有文章</li>';
+  });
+}
+async function loadPosts(){
+  try{
+    const files=await listFiles();
+    const all=(await Promise.all(files.map(async f=>{const slug=f.replace(/\.md$/,'');
+      try{const r=await fetch(`posts/${encodeURIComponent(f)}`);return r.ok?parse(slug,await r.text()):null}catch(_){return null}}))).filter(Boolean);
+    all.sort((a,b)=>b.date.localeCompare(a.date));
+    all.forEach(p=>POSTS[p.slug]=p);
+    published=all.filter(p=>!p.draft);
+    renderList();renderBoxes(all);
+    const h=location.hash.slice(1);if(h.startsWith('p-')&&POSTS[h.slice(2)])openPost(h.slice(2));
+  }catch(_){postsEl.innerHTML='<p class="sum" style="padding:14px 0">文章清單暫時讀不到，晚點再來看看。</p>'}
+}
+moreBtn.addEventListener('click',()=>{showAll=!showAll;renderList()});
 
 const reader=document.getElementById('reader'),rBody=document.getElementById('r-body');
 let lastFocus=null;
-async function openPost(slug){
+function openPost(slug){
+  const p=POSTS[slug];if(!p||p.draft)return;
   lastFocus=document.activeElement;reader.hidden=false;document.body.style.overflow='hidden';
-  rBody.innerHTML='<p>載入中…</p>';document.getElementById('r-close').focus();
-  try{const r=await fetch(`posts/${encodeURIComponent(slug)}.md`);if(!r.ok)throw 0;const md=await r.text();
-    rBody.innerHTML=window.marked?marked.parse(md):`<pre>${esc(md)}</pre>`;
-  }catch(_){rBody.innerHTML='<h1>這篇還在箱子裡</h1><p>文章檔案沒有讀到。如果是在本機直接雙擊打開 index.html，瀏覽器不讓網頁讀檔；放上 GitHub Pages 就會正常。</p>'}
+  const html=window.marked?marked.parse(p.body):`<pre>${esc(p.body)}</pre>`;
+  rBody.innerHTML=`<h1>${esc(p.title)}</h1><p class="meta">${esc(p.date)} · ${esc(p.column)}</p>`+html;
+  rBody.querySelectorAll('a[href^="http"]').forEach(a=>{a.target='_blank';a.rel='noopener'});
+  reader.scrollTop=0;document.getElementById('r-close').focus();
+  try{history.replaceState(null,'','#p-'+slug)}catch(_){}
 }
-function closePost(){reader.hidden=true;document.body.style.overflow='';if(lastFocus)lastFocus.focus()}
-postsEl.addEventListener('click',e=>{const b=e.target.closest('button[data-slug]');if(b)openPost(b.dataset.slug)});
+function closePost(){reader.hidden=true;document.body.style.overflow='';
+  try{history.replaceState(null,'',location.pathname+location.search+'#blog')}catch(_){}
+  if(lastFocus)lastFocus.focus()}
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-slug]');if(b)openPost(b.dataset.slug)});
 document.getElementById('r-close').addEventListener('click',closePost);
 reader.addEventListener('click',e=>{if(e.target===reader)closePost()});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!reader.hidden)closePost()});
+loadPosts();
 </script>
 </body>
 </html>

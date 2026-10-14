@@ -1,9 +1,19 @@
 [
-  {
-    "slug": "hello-again",
-    "title": "洞洞板開張：七年後重新整理這個網站",
-    "date": "2026-10-14",
-    "column": "工具人日記",
-    "summary": "2019 年用 Hexo 開了部落格，只寫了一篇 Hello World。這次把它拆掉重做。"
-  }
+ "africa-supply-chain-trip.md",
+ "ai-agent-roadmap.md",
+ "angle-steel-rack-refinish.md",
+ "bangkok-prep-checklist.md",
+ "billy-how-many-boxes.md",
+ "cli-agents-compared.md",
+ "cloudflare-tls-fingerprint.md",
+ "external-amp-7-1.md",
+ "hello-again.md",
+ "integra-dhc806-apple-tv.md",
+ "ipas-ai-notes.md",
+ "it-portfolio-guide.md",
+ "pegboard-wall.md",
+ "pretend-to-be-einvoice-app.md",
+ "stock-announcement-agent.md",
+ "tapered-boxes.md",
+ "where-did-my-money-go.md"
 ]
