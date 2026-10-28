@@ -143,7 +143,9 @@ nav a:hover{background:var(--paper);color:var(--ink)}
 .bin .k{font:500 .72rem var(--mono);letter-spacing:.12em;color:var(--muted)}
 .bin h4{font-size:1.16rem;margin:4px 0 6px}
 .bin p{font-size:.92rem;color:var(--muted)}
-.bin:nth-child(1){--c:var(--mint)}.bin:nth-child(2){--c:var(--yolk)}.bin:nth-child(3){--c:var(--stamp)}.bin:nth-child(4){--c:var(--ink)}.bin:nth-child(5){--c:var(--mint)}.bin:nth-child(6){--c:var(--yolk)}
+.bin.wide{grid-column:1/-1;display:flex;flex-direction:column;gap:2px}
+.bin.wide .flow{margin-top:10px;align-self:flex-start;max-width:100%}
+.bin:nth-child(1){--c:var(--mint)}.bin:nth-child(2){--c:var(--yolk)}.bin:nth-child(3){--c:var(--stamp)}.bin:nth-child(4){--c:var(--ink)}.bin:nth-child(5){--c:var(--mint)}
 
 /* 部落格：收納盒 */
 .boxes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
@@ -392,8 +394,7 @@ footer code{font-family:var(--mono)}
         <div class="bins">
           <div class="bin"><div class="k">ACADEMIA</div><h4>中原大學 資工碩士</h4><p>研究聯邦學習，論文發表在 Future Generation Computer Systems。</p></div>
           <div class="bin"><div class="k">ENTERPRISE</div><h4>緯創 Wistron</h4><p>在大公司裡學會 ERP 怎麼跑，也看懂流程卡在哪。</p></div>
-          <div class="bin"><div class="k">NEW BUSINESS</div><h4>鈺博科技 EPRO Technology</h4><p>公司新開的二手手機銷售業務，跟著一條新業務線從頭建起來。</p></div>
-          <div class="bin"><div class="k">HONG KONG</div><h4>手機業務 × ERP 導入</h4><p>一邊賣手機一邊把 ERP 裝進去，業務和系統兩邊都懂。</p></div>
+          <div class="bin wide"><div class="k">TAIWAN × HONG KONG · 二手手機新業務</div><h4>鈺博科技 EPRO Technology</h4><p>公司新開的二手手機業務，原本全靠 Excel 在跑。我把銷售、進貨、出貨、退貨一條一條梳理清楚，依二手機的業務特性調整流程，轉成每一筆都能追查、回溯的 ERP 系統，在台灣和香港兩地導入。</p><div class="flow">Excel → <b>銷售</b> → <b>進貨</b> → <b>出貨</b> → <b>退貨</b> → 可追溯的 ERP</div></div>
           <div class="bin"><div class="k">FIELD WORK</div><h4>非洲與亞洲供應鏈研究</h4><p>自己規劃的多國田野調查，看貨怎麼從工廠走到市場。</p></div>
           <div class="bin"><div class="k">2025.10 – 2026.06</div><h4>世紀樺欣 管理部 IT</h4><p>離岸風電鋼構集團。顧機房、資安、HR 系統，順手把會議紀錄交給 AI。</p></div>
         </div>
